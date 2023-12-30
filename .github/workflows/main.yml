@@ -33,7 +33,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::${{secrets.AWS_S3_ACCOUNT_ID}}:role/portfolio_cicd
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_S3_ACCOUNT_ID }}:role/portfolio_cicd
           role-duration-seconds: 1200 # Adjust the duration as needed
           aws-region: ap-southeast-2
 
