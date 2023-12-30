@@ -1,0 +1,45 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy-prod:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build source code
+        run: npm run build
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::${{secrets.AWS_S3_ACCOUNT_ID}}:role/portfolio_cicd
+          role-duration-seconds: 1200  # Adjust the duration as needed
+
+      - name: Deploy static site to S3 bucket
+        run: |
+          aws s3 sync --cache-control 'max-age=604800' --exclude index.html build/ s3://${{ secrets.AWS_S3_PROD_BUCKET }}
+          aws s3 sync --cache-control 'no-cache' build/ s3://${{ secrets.AWS_S3_PROD_BUCKET }}
+
+      - name: Invalidating cloudfront cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_PROD_CLOUDFRONT_DISTRIBUTION_ID }} --paths '/index.html'
