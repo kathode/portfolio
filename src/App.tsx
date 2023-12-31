@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
 import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 
