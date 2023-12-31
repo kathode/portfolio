@@ -7,6 +7,13 @@ on:
   push:
     branches: [main]
 
+env:
+  AWS_REGION : ap-southeast-2
+
+permissions:
+  id-token: write
+  contents: read
+  
 jobs:
   deploy-prod:
     runs-on: ubuntu-latest
@@ -17,7 +24,7 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
@@ -31,16 +38,16 @@ jobs:
         run: npm run build
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v1.7.0
         with:
-          role-to-assume: ${{ secrets.AWS_S3_ACCOUNT_ID }}
-          role-duration-seconds: 1200 # Adjust the duration as needed
-          aws-region: ap-southeast-2
+          role-to-assume: ${{ secrets.AWS_ROLE_ID }}
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Deploy static site to S3 bucket
         run: |
-          aws s3 sync --cache-control 'max-age=604800' --exclude index.html build/ s3://${{ secrets.AWS_S3_PROD_BUCKET }}
-          aws s3 sync --cache-control 'no-cache' build/ s3://${{ secrets.AWS_S3_PROD_BUCKET }}
+          aws s3 sync --cache-control 'max-age=604800' --exclude index.html dist/ s3://${{ secrets.AWS_S3_PROD_BUCKET }}
+          aws s3 sync --cache-control 'no-cache' dist/ s3://${{ secrets.AWS_S3_PROD_BUCKET }}
 
       - name: Invalidating cloudfront cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_PROD_CLOUDFRONT_DISTRIBUTION_ID }} --paths '/index.html'
