@@ -46,8 +46,8 @@ jobs:
 
       - name: Deploy static site to S3 bucket
         run: |
-          aws s3 sync --cache-control 'max-age=604800' --exclude index.html build/ s3://${{ secrets.AWS_S3_PROD_BUCKET }}
-          aws s3 sync --cache-control 'no-cache' build/ s3://${{ secrets.AWS_S3_PROD_BUCKET }}
+          aws s3 sync --cache-control 'max-age=604800' --exclude index.html dist/ s3://${{ secrets.AWS_S3_PROD_BUCKET }}
+          aws s3 sync --cache-control 'no-cache' dist/ s3://${{ secrets.AWS_S3_PROD_BUCKET }}
 
       - name: Invalidating cloudfront cache
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_PROD_CLOUDFRONT_DISTRIBUTION_ID }} --paths '/index.html'
