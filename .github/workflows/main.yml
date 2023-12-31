@@ -7,6 +7,9 @@ on:
   push:
     branches: [main]
 
+env:
+  AWS_REGION : ap-southeast-2
+
 jobs:
   deploy-prod:
     runs-on: ubuntu-latest
@@ -17,7 +20,7 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
@@ -31,11 +34,14 @@ jobs:
         run: npm run build
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v1.7.0
         with:
-          role-to-assume: ${{ secrets.AWS_S3_ACCOUNT_ID }}
-          role-duration-seconds: 1200 # Adjust the duration as needed
-          aws-region: ap-southeast-2
+          role-to-assume: ${{ secrets.AWS_ROLE_ID }}
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Sts GetCallerIdentity
+        run: |
+          aws sts get-caller-identity
 
       - name: Deploy static site to S3 bucket
         run: |
