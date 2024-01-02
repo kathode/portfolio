@@ -13,7 +13,6 @@ const BreathingBlob = (props: Props) => {
 
   return (
     <svg
-      className="logo"
       viewBox="0 0 900 900"
       width={size}
       height={size}
@@ -25,6 +24,7 @@ const BreathingBlob = (props: Props) => {
     >
       <g transform="translate(454.81072117472434 482.63282018887986)">
         <motion.path
+          className="logo"
           fill={fill}
           d={blob2}
           animate={{

@@ -1,9 +1,7 @@
 #root {
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
 }
-
 // primary colour
 $primary: #ff847c;
 
@@ -23,5 +21,4 @@ $quinary: #3f5159;
 $senary: #151b1d;
 
 .App {
-  background: $senary;
 }
