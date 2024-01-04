@@ -13,7 +13,6 @@ const BreathingBlob = (props: Props) => {
 
   return (
     <svg
-      className="svg-logo"
       viewBox="0 0 900 900"
       width={size}
       height={size}
