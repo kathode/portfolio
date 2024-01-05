@@ -23,9 +23,9 @@ const Logo = () => {
   }, [controls]);
 
   return (
-    <div className="flex justify-center items-center h-[100svh] w-[100svw] relative bg-[#151b1d] svg-logo">
+    <div className="flex justify-center items-center h-[100svh] w-[100svw] relative bg-[#151b1d]">
       <BreathingBlob size={"40svh"} duration={20} hover={hover} />
-      <div className="react h-max-[400px] w-[291.53px] absolute" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+      <div className="h-max-[400px] w-[291.53px] absolute" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
         <motion.svg viewBox="-3.907 25.388 32.55 44.66" animate={controls}>
           <motion.path d={logo} variants={draw} fill="#ff847c" />
         </motion.svg>

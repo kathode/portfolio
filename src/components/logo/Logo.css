@@ -4,6 +4,10 @@
   transition: filter 500ms;
 }
 
+.breathing-blob {
+  filter: drop-shadow(0 0 2.5em #ffb4af);
+}
+
 @keyframes logo-spin {
   0% {
     transform: rotate(0deg);
@@ -19,5 +23,12 @@
 @media (prefers-reduced-motion: no-preference) {
   .logo {
     animation: logo-spin infinite 60s linear;
+  }
+}
+
+@media (max-width: 480px) {
+  .breathing-blob {
+    /* Disable filter style for mobile */
+    filter: none;
   }
 }

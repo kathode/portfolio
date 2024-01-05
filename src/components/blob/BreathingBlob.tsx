@@ -12,16 +12,7 @@ const BreathingBlob = (props: Props) => {
   const { size, fill = "#2a363b", duration = 20, hover = false } = props;
 
   return (
-    <svg
-      viewBox="0 0 900 900"
-      width={size}
-      height={size}
-      style={{
-        ...(hover && {
-          filter: "drop-shadow(0 0 3em #ffb4af)",
-        }),
-      }}
-    >
+    <svg className={`svg-logo ${hover && "breathing-blob"}`} viewBox="0 0 900 900" width={size} height={size}>
       <g transform="translate(454.81072117472434 482.63282018887986)">
         <motion.path
           className="logo"
