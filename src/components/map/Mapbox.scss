@@ -1,0 +1,9 @@
+.mapbox-container {
+  width: 50%;
+}
+
+@media (max-width: 480px) {
+  .mapbox-container {
+    width: 100%;
+  }
+}
