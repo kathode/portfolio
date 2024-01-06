@@ -1,0 +1,15 @@
+export { default as React } from "./React";
+export { default as Redux } from "./Redux";
+export { default as Html } from "./Html";
+export { default as Css } from "./Css";
+export { default as Javascript } from "./Javascript";
+export { default as Typescript } from "./Typescript";
+export { default as Scss } from "./Scss";
+export { default as Bootstrap } from "./Bootstrap";
+export { default as Tailwind } from "./Tailwind";
+export { default as Github } from "./Github";
+export { default as Python } from "./Python";
+export { default as Figma } from "./Figma";
+export { default as Threejs } from "./Threejs";
+export { default as Postman } from "./Postman";
+export { default as Swagger } from "./Swagger";

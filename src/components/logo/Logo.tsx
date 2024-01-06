@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import BreathingBlob from "../blob/BreathingBlob";
 import { motion, useAnimation } from "framer-motion";
 import "./Logo.css";
-import { logo } from "../blob/blobs";
+import { logo } from "../svg/svgpaths";
+import SvgHub from "../svg/SvgHub";
 
 const Logo = () => {
   const [hover, setHover] = useState(false);
@@ -22,10 +23,21 @@ const Logo = () => {
     animateSequence();
   }, [controls]);
 
+  useEffect(() => {
+    if (hover) {
+      document.documentElement.style.setProperty("--radius", "40svw");
+      document.documentElement.style.setProperty("--opacity", "1");
+    } else {
+      document.documentElement.style.setProperty("--radius", "0svw");
+      document.documentElement.style.setProperty("--opacity", "0");
+    }
+  });
+
   return (
     <div className="flex justify-center items-center h-[100svh] w-[100svw] relative bg-[#151b1d]">
+      <SvgHub />
       <BreathingBlob size={"40svh"} duration={20} hover={hover} />
-      <div className="h-max-[400px] w-[291.53px] absolute" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+      <div className="test h-max-[400px] w-[291.53px] absolute" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
         <motion.svg viewBox="-3.907 25.388 32.55 44.66" animate={controls}>
           <motion.path d={logo} variants={draw} fill="#ff847c" />
         </motion.svg>

@@ -1,0 +1,59 @@
+$icon-radius: 3svw;
+$items: 15;
+
+:root {
+  --radius: 0svw;
+  --opacity: 0;
+}
+
+.circle-container {
+  position: relative;
+  width: var(--radius);
+  height: var(--radius);
+  border-radius: 50%;
+}
+
+.circle-container > svg {
+  position: absolute;
+  width: $icon-radius;
+  height: $icon-radius;
+  will-change: animation transition transform opacity left top;
+  opacity: var(--opacity);
+}
+
+@for $i from 1 through $items {
+  .circle-container > :nth-child(#{$i}) {
+    $angle: (calc(360deg / $items) * ($i - 1)); // calculate the angle for each icon
+    left: calc(50% + #{cos($angle)} * var(--radius) / 2 - (#{$icon-radius} / 2)); // position the icon along the x-axis
+    top: calc(50% + #{sin($angle)} * var(--radius) / 2 - (#{$icon-radius} / 2)); // position the icon along the y-axis
+    position: absolute;
+    transition: left 1100ms cubic-bezier(0.175, 0.885, 0.32, 1.275), top 1100ms cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 500ms ease;
+  }
+}
+
+@keyframes clockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes counter-clockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .circle-container {
+    animation: clockwise infinite 45s linear;
+  }
+  .circle-container > * {
+    animation: counter-clockwise infinite 45s linear;
+  }
+}
