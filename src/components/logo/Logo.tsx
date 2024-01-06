@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import BreathingBlob from "../blob/BreathingBlob";
 import { motion, useAnimation } from "framer-motion";
 import "./Logo.css";
-import { logo } from "../blob/blobs";
+import { logo } from "../svg/svgpaths";
 
 const Logo = () => {
   const [hover, setHover] = useState(false);

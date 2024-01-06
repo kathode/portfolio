@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { blobs1, blob2, blob3, blob4, blob5, blob6 } from "./blobs";
+import { blobs1, blob2, blob3, blob4, blob5, blob6 } from "../svg/svgpaths";
 
 type Props = {
   size: string;
