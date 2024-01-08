@@ -11,6 +11,9 @@ $items: 15;
   width: var(--radius);
   height: var(--radius);
   border-radius: 50%;
+  &.paused * {
+    animation-play-state: paused;
+  }
 }
 
 .circle-container > svg {
