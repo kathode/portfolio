@@ -1,6 +1,6 @@
-const Tailwind = () => {
+const Tailwind = (props: any) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 54 33">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 54 33" {...props}>
       <g clipPath="url(#prefix__clip0)">
         <path
           fill="#38bdf8"

@@ -1,6 +1,6 @@
-const Bootstrap = () => {
+const Bootstrap = (props: any) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 408">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 408" {...props}>
       <defs>
         <linearGradient id="bs-logo-a" x1="76.079" x2="523.48" y1="10.798" y2="365.945" gradientUnits="userSpaceOnUse">
           <stop stopColor="#9013fe" />

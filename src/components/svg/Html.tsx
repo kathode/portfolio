@@ -1,6 +1,6 @@
-const Html = () => {
+const Html = (props: any) => {
   return (
-    <svg viewBox="-52.5 0 361 361" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="-52.5 0 361 361" fill="#ffffff" xmlns="http://www.w3.org/2000/svg" {...props}>
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
       <g id="SVGRepo_iconCarrier">
