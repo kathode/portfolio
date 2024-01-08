@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
-import mapboxgl from "mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+import mapboxgl from "mapbox-gl";
 mapboxgl.accessToken = import.meta.env.VITE_APP_MAPBOX_ACCESS_TOKEN;
 
 const Mapbox = () => {
@@ -12,9 +12,9 @@ const Mapbox = () => {
   const [zoom, setZoom] = useState(11);
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
-
     setTimeout(() => {
+      if (map.current) return; // initialize map only once
+
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: "mapbox://styles/kathode/clqz32u2800fh01rj8p486vmt",
