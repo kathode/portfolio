@@ -39,7 +39,7 @@ const Logo = () => {
         <SvgHub />
       </div>
       <BreathingBlob size={"40svh"} duration={20} hover={hover} />
-      <div className="test h-max-[400px] w-[291.53px] absolute p-[4em] rounded-full z-10" onMouseEnter={() => setHover(true)}>
+      <div className="test h-max-[400px] w-[291.53px] absolute rounded-full z-10" onMouseEnter={() => setHover(true)}>
         <motion.svg viewBox="-3.907 25.388 32.55 44.66" animate={controls}>
           <motion.path d={logo} variants={draw} fill="#ff847c" />
         </motion.svg>
