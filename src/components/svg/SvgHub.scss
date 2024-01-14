@@ -17,7 +17,7 @@ $items: 15;
   }
 }
 
-.circle-container > svg {
+.circle-container > * {
   position: absolute;
   width: $icon-radius;
   height: $icon-radius;
