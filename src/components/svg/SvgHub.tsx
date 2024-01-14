@@ -7,21 +7,26 @@ const SvgComponents: SvgComponents = SVG;
 const svgKeys = Object.keys(SvgComponents);
 
 const SvgHub = () => {
-  const [hover, setHover] = useState(false);
+  const [hover, setHover] = useState({ bool: false, key: "" });
 
-  const pause = () => {
-    setHover(true);
+  const pause = (key: string) => {
+    setHover({ bool: true, key: key });
   };
 
   const play = () => {
-    setHover(false);
+    setHover({ bool: false, key: "" });
   };
 
   return (
-    <div className={`${hover ? "circle-container paused" : "circle-container"}`} style={{ animationPlayState: hover ? "paused" : "" }}>
+    <div className={`${hover.bool ? "circle-container paused" : "circle-container"}`} style={{ animationPlayState: hover.bool ? "paused" : "" }}>
       {svgKeys.map((svgKey) => {
         const SvgComponent = SvgComponents[svgKey];
-        return <SvgComponent key={svgKey} onMouseEnter={pause} onMouseLeave={play} />;
+        return (
+          <div key={svgKey}>
+            <SvgComponent key={svgKey} onMouseEnter={() => pause(svgKey)} onMouseLeave={play} />
+            {hover.bool && hover.key === svgKey && <div>{svgKey}</div>}
+          </div>
+        );
       })}
     </div>
   );
