@@ -22,7 +22,7 @@ const SvgHub = () => {
       {svgKeys.map((svgKey) => {
         const SvgComponent = SvgComponents[svgKey];
         return (
-          <div key={svgKey}>
+          <div className="text-center text-white" key={svgKey}>
             <SvgComponent key={svgKey} onMouseEnter={() => pause(svgKey)} onMouseLeave={play} />
             {hover.bool && hover.key === svgKey && <div>{svgKey}</div>}
           </div>
