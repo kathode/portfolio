@@ -22,9 +22,14 @@ const SvgHub = () => {
       {svgKeys.map((svgKey) => {
         const SvgComponent = SvgComponents[svgKey];
         return (
-          <div className="text-center text-white" key={svgKey}>
-            <SvgComponent key={svgKey} onMouseEnter={() => pause(svgKey)} onMouseLeave={play} />
-            {hover.bool && hover.key === svgKey && <div>{svgKey}</div>}
+          <div
+            className="text-center text-white flex justify-center items-center flex-col relative"
+            key={svgKey}
+            onMouseEnter={() => pause(svgKey)}
+            onMouseLeave={play}
+          >
+            <SvgComponent key={svgKey} />
+            <div className="absolute bottom-[-25px]">{hover.bool && hover.key === svgKey && <>{svgKey}</>}</div>
           </div>
         );
       })}
