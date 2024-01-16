@@ -25,7 +25,7 @@ const Logo = () => {
 
   useEffect(() => {
     if (hover) {
-      document.documentElement.style.setProperty("--radius", "40svw");
+      document.documentElement.style.setProperty("--radius", "60svh");
       document.documentElement.style.setProperty("--opacity", "1");
     } else {
       document.documentElement.style.setProperty("--radius", "0svw");
