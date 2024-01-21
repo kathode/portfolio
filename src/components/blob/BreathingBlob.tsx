@@ -8,8 +8,23 @@ type Props = {
   hover?: boolean;
 };
 
+const blobs = [blobs1, blob2, blob3, blob4, blob5, blob6];
+
+// Shuffle function
+function shuffle(array: any[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 const BreathingBlob = (props: Props) => {
   const { size, fill = "#2a363b", duration = 20, hover = false } = props;
+
+  // Shuffle blobs
+  shuffle(blobs);
+  // Ensure first and last blob are the same
+  blobs.push(blobs[0]);
 
   return (
     <svg className={`svg-logo ${hover && "breathing-blob"}`} viewBox="0 0 900 900" width={size} height={size}>
@@ -19,7 +34,7 @@ const BreathingBlob = (props: Props) => {
           fill={fill}
           d={blob2}
           animate={{
-            d: [blobs1, blob2, blob3, blob4, blob5, blob6, blobs1],
+            d: blobs,
           }}
           transition={{
             duration: duration,
