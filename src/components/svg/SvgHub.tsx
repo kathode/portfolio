@@ -29,7 +29,13 @@ const SvgHub = () => {
             onMouseLeave={play}
           >
             <SvgComponent key={svgKey} />
-            <div className="absolute bottom-[-25px]">{hover.bool && hover.key === svgKey && <>{svgKey}</>}</div>
+            <div
+              className={`absolute bottom-[-25px]
+            ${hover.key === svgKey ? "opacity-100" : "opacity-0"}`}
+              style={{ transition: "opacity 0.2s ease-in-out" }}
+            >
+              {svgKey}
+            </div>
           </div>
         );
       })}
